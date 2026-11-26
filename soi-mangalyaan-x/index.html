@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07090F" />
+    <script>
+      (() => {
+        let theme = 'dark'
+        try {
+          const saved = localStorage.getItem('soi-theme')
+          if (saved === 'light' || saved === 'dark') theme = saved
+          else if (window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light'
+        } catch {
+          if (window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light'
+        }
+        document.documentElement.dataset.theme = theme
+        document.documentElement.style.colorScheme = theme
+        const color = document.querySelector('meta[name="theme-color"]')
+        if (color) color.content = theme === 'dark' ? '#07090F' : '#F4F1EC'
+      })()
+    </script>
+    <meta name="description" content="Meet Mangalyaan-X, a human journey to Mars imagined by the Space Organisation of India." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Michroma&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <title>Mangalyaan-X — Space Organisation of India</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body { margin: 0; background: var(--cream); color: var(--ink); font: 400 17px/1.6 var(--body); overflow-x: hidden; }
+button, a { font: inherit; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; }
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+::selection { background: var(--sunflower); color: var(--ink); }
+img, svg { display: block; max-width: 100%; }
+.clay { --clay: var(--tomato); position: relative; isolation: isolate; background: radial-gradient(ellipse at 28% 12%, rgba(255,255,255,.24), transparent 36%), var(--clay); box-shadow: var(--shadow-clay); }
+.clay::before { content: ''; position: absolute; z-index: 0; inset: 0; pointer-events: none; border-radius: inherit; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); }
+.gloss { position: relative; }
+.gloss::after { content: ''; position: absolute; width: 30%; height: 9%; top: 8%; left: 12%; border-radius: 50%; background: rgba(255,255,255,.4); filter: blur(9px); pointer-events: none; }
+.wrap { width: min(1200px, calc(100% - 64px)); margin-inline: auto; }
+.skip-link { position:fixed; z-index:100; top:12px; left:12px; padding:12px 18px; border-radius:999px; background:var(--ink); color:var(--cream); transform:translateY(-160%); transition:transform .2s ease; }
+.skip-link:focus-visible { transform:translateY(0); }
+.section { padding: 112px 0; }
+.section-head { max-width: 720px; margin-bottom: 54px; }
+.kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; margin: 0 0 16px; }
+.kicker::before { content: ''; width: 11px; height: 11px; border-radius: 50%; background: var(--tomato); box-shadow: 0 3px 6px rgba(255,107,91,.35), inset 0 2px 3px rgba(255,255,255,.65); }
+h1,h2,h3,p { margin-top: 0; }
+h1,h2,h3 { font-family: var(--display); font-weight: 800; letter-spacing: -.03em; line-height: .95; text-wrap: balance; }
+h1 { font-size: clamp(48px, 7vw, 104px); }
+h2 { font-size: clamp(40px, 5.3vw, 72px); }
+h3 { font-size: 30px; }
+.section-head p:not(.kicker) { font-size: 18px; max-width: 590px; }
+.btn { --clay: var(--tomato); display: inline-flex; justify-content: center; align-items: center; min-height: 56px; border: 0; border-radius: 999px; padding: 0 25px; background: var(--clay); box-shadow: var(--shadow-clay); font-weight: 700; cursor: pointer; transition: transform .28s var(--ease-spring), box-shadow .28s ease; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 32px 48px -10px color-mix(in srgb, var(--clay) 55%, black 45% / .38), inset 0 -10px 18px color-mix(in srgb, var(--clay) 70%, black), inset 0 10px 16px rgba(255,255,255,.55), inset 6px 0 10px rgba(255,255,255,.18); }
+.btn:active { transform: translateY(3px); box-shadow: var(--shadow-pressed); }
+.btn--ink { color: var(--cream); }
+.btn--cream { background: var(--cream); --clay: #e8d8c1; }
+/* All animation entrances use transform and opacity. */
+.reveal { opacity: 0; transform: translateY(26px); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation: none !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } .mask-line>span { transform: none !important; opacity: 1 !important; } .marquee-track { transform: none !important; } }
+
+.clay > * { position: relative; z-index: 1; }
+
+.clay::after { content:""; position:absolute; z-index:2; width:28%; height:7%; top:8%; left:10%; border-radius:50%; background:rgba(255,255,255,.4); filter:blur(8px); pointer-events:none; }
